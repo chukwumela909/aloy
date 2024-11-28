@@ -71,24 +71,19 @@ async function registerPackage() {
             },
             body: JSON.stringify(payload),
         });
-
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status} - ${response.statusText}`);
-        }
-
-    
+   
 
         const data = await response.json();
         console.log(data)
 
-        // if (data) {
-        //     const errorData = await response.json();
-        //     return Swal.fire({
-        //         icon: "error",
-        //         title: "Oops...",
-        //         text: errorData.message,
-        //     });
-        // }
+        if (response.status == 400) {
+            hideLoader()
+            return Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: data.message,
+            });
+        }
         console.log("Response:", data);
         hideLoader()
         return Swal.fire({
