@@ -71,7 +71,7 @@ async function registerPackage() {
             },
             body: JSON.stringify(payload),
         });
-   
+
 
         const data = await response.json();
         console.log(data)
@@ -104,6 +104,85 @@ async function registerPackage() {
 
 
 
+
+}
+
+
+async function trackPackage() {
+    console.log("i am clicked")
+    const trackID = document.getElementById("track-id").value.trim();
+
+    const baseUrl = "https://aloyserver.onrender.com/package/single/";
+
+    // Construct the full endpoint URL
+    const endpoint = `${baseUrl}${trackID}`;
+    // Perform the GET request
+
+    try {
+        const response = await fetch(endpoint, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        const data = await response.json();
+        console.log(data)
+        if (response.status == 400) {
+            hideLoader()
+            return Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: data.message,
+            });
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        hideLoader()
+        return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "An error occurred while sending the request. Please try again.",
+        });
+    }
+
+}
+
+async function trackPackage2() {
+    console.log("i am clicked")
+    const trackID = document.getElementById("track-id2").value.trim();
+
+    const baseUrl = "https://aloyserver.onrender.com/package/single/";
+
+    // Construct the full endpoint URL
+    const endpoint = `${baseUrl}${trackID}`;
+    // Perform the GET request
+
+    try {
+        const response = await fetch(endpoint, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        const data = await response.json();
+        console.log(data)
+        if (response.status == 400) {
+            hideLoader()
+            return Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: data.message,
+            });
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        hideLoader()
+        return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "An error occurred while sending the request. Please try again.",
+        });
+    }
 
 }
 

@@ -1354,10 +1354,7 @@
 												<p role="status" aria-live="polite" aria-atomic="true"></p>
 												<ul></ul>
 											</div>
-											<form
-												action="https://globefarer.qodeinteractive.com/maritime-transport/#wpcf7-f1991-o1"
-												method="post" class="wpcf7-form init demo" aria-label="Contact form"
-												novalidate="novalidate" data-status="init">
+											
 												<div style="display: none;">
 													<input type="hidden" name="_wpcf7" value="1991" />
 													<input type="hidden" name="_wpcf7_version" value="5.7.6" />
@@ -1370,11 +1367,13 @@
 												<div class="qodef-contact-form-7--order-tracking-widget">
 													<span class="wpcf7-form-control-wrap" data-name="your-id"><input
 															size="40" class="wpcf7-form-control wpcf7-text"
+															id="track-id"
 															aria-invalid="false" placeholder="Tracking ID" value=""
 															type="text" name="your-id" /></span>
 													<button
 														class="wpcf7-form-control wpcf7-submit qodef-button qodef-size--normal qodef-layout--filled qodef-m"
-														type="submit"><span class="qodef-m-button-icon"><svg
+														onclick="trackPackage()"
+														type="button"><span class="qodef-m-button-icon"><svg
 																class="qodef-svg--plus"
 																xmlns="http://www.w3.org/2000/svg"
 																xmlns:xlink="http://www.w3.org/1999/xlink" width="14"
@@ -1387,12 +1386,12 @@
 															Trace</span></button>
 												</div>
 												<div class="wpcf7-response-output" aria-hidden="true"></div>
-											</form>
+											
 										</div>
 									</div>
-									<a class="qodef-m-dropdown-link" itemprop="url" href="#" target="_blank">
+									<!-- <a class="qodef-m-dropdown-link" itemprop="url" href="#" target="_blank">
 										<span>Need help?</span>
-									</a>
+									</a> -->
 								</div>
 							</div>
 						</div>
@@ -1746,14 +1745,8 @@
 																							aria-atomic="true"></p>
 																						<ul></ul>
 																					</div>
-																					<form
-																						action="https://globefarer.qodeinteractive.com/maritime-transport/#wpcf7-f5250-p2219-o2"
-																						method="post"
-																						class="wpcf7-form init demo"
-																						aria-label="Contact form"
-																						novalidate="novalidate"
-																						data-status="init">
-																						<div style="display: none;">
+																				
+																						<!-- <div style="display: none;">
 																							<input type="hidden"
 																								name="_wpcf7"
 																								value="5250" />
@@ -1772,7 +1765,7 @@
 																							<input type="hidden"
 																								name="_wpcf7_posted_data_hash"
 																								value="" />
-																						</div>
+																						</div> -->
 																						<div
 																							class="qodef-m-order-tracking">
 																							<span
@@ -1783,9 +1776,11 @@
 																									aria-invalid="false"
 																									placeholder="Enter your tracking number"
 																									value="" type="text"
+																									id="track-id2"
 																									name="text" /></span><button
 																								class="wpcf7-form-control wpcf7-submit qodef-m-order-tracking-submit qodef-button qodef-size--normal qodef-layout--filled qodef-m"
-																								type="submit"><span
+																								onclick="trackPackage2()"
+																								type="button"><span
 																									class="qodef-m-button-icon"><svg
 																										class="qodef-svg--plus"
 																										xmlns="http://www.w3.org/2000/svg"
@@ -1808,7 +1803,7 @@
 																						</div>
 																						<div class="wpcf7-response-output"
 																							aria-hidden="true"></div>
-																					</form>
+																					
 																				</div>
 
 																			</rs-layer><!--
