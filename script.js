@@ -17,11 +17,16 @@ async function registerPackage() {
     const receiverEmail = document.getElementById("receiver-email").value.trim();
     const receiverPhone = document.getElementById("receiver-phone").value.trim();
     const receiverLocation = document.getElementById("receiver-location").value.trim();
+    const deliveryMode = document.getElementById("delivery-mode").value.trim();
+    const contentName = document.getElementById("content-name").value.trim();
+    const contentWeight = document.getElementById("content-weight").value.trim();
+    const deliveryStatus = document.getElementById("delivery-status").value.trim();
     const trackingId = document.getElementById("tracking-id").value.trim();
 
 
     if (!senderName || !senderEmail || !senderPhone || !senderLocation ||
-        !receiverName || !receiverEmail || !receiverPhone || !receiverLocation || !trackingId) {
+        !receiverName || !receiverEmail || !receiverPhone || 
+        !receiverLocation || !deliveryMode || !contentName || !contentWeight || !deliveryStatus ||  !trackingId) {
         return Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -57,8 +62,11 @@ async function registerPackage() {
         receiverName,
         receiverEmail,
         receiverPhone,
-        receiverLocation
-
+        receiverLocation,
+        deliveryMode,
+        contentName,
+        contentWeight,
+        deliveryStatus,     
     };
     showLoader()
     console.log(payload)
@@ -118,6 +126,14 @@ async function trackPackage() {
     const endpoint = `${baseUrl}${trackID}`;
     // Perform the GET request
 
+    if (!trackID) {
+        return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Enter a tracking ID",
+        });
+    }
+    showLoader()
     try {
         const response = await fetch(endpoint, {
             headers: {
@@ -135,6 +151,12 @@ async function trackPackage() {
                 text: data.message,
             });
         }
+        hideLoader()
+        localStorage.setItem('packageTracking', JSON.stringify(data));
+       window.location = "./trackdetails.html"
+
+
+
     } catch (error) {
         console.error("Error:", error);
         hideLoader()
@@ -156,7 +178,7 @@ async function trackPackage2() {
     // Construct the full endpoint URL
     const endpoint = `${baseUrl}${trackID}`;
     // Perform the GET request
-
+    showLoader()
     try {
         const response = await fetch(endpoint, {
             headers: {
@@ -174,6 +196,9 @@ async function trackPackage2() {
                 text: data.message,
             });
         }
+        hideLoader()
+        localStorage.setItem('packageTracking', JSON.stringify(data));
+       window.location = "./trackdetails.html"
     } catch (error) {
         console.error("Error:", error);
         hideLoader()
@@ -184,6 +209,36 @@ async function trackPackage2() {
         });
     }
 
+}
+
+
+
+
+function populatePackageInfo() {
+    console.log("Oh men am active")
+    // Retrieve the package information from local storage
+    const packageInfo = JSON.parse(localStorage.getItem('packageTracking'));
+    console.log(packageInfo)
+    // Check if packageInfo exists
+    if (packageInfo) {
+        // Populate the HTML elements with the package information
+        document.getElementById('tracking-id').innerText = packageInfo.trackingId;
+        document.getElementById('sender-name').innerText = packageInfo.senderName;
+        document.getElementById('sender-email').innerText = packageInfo.senderEmail;
+        document.getElementById('sender-phone').innerText = packageInfo.senderPhone;
+        document.getElementById('sender-location').innerText = packageInfo.senderLocation;
+        document.getElementById('receiver-name').innerText = packageInfo.receiverName;
+        document.getElementById('receiver-email').innerText = packageInfo.receiverEmail;
+        document.getElementById('receiver-phone').innerText = packageInfo.receiverPhone;
+        document.getElementById('receiver-location').innerText = packageInfo.receiverLocation;
+        document.getElementById('package-weight').innerText = packageInfo.packageWeight;
+        document.getElementById('package-name').innerText = packageInfo.packageName;
+        document.getElementById('package-status').innerText = packageInfo.packageStatus;
+        document.getElementById('shipping-mode').innerText = packageInfo.shippingMode;
+    } else {
+        // Handle case where no package information is found
+        document.getElementById('package-info').innerText = 'No package information found.';
+    }
 }
 
 
