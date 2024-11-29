@@ -231,10 +231,10 @@ function populatePackageInfo() {
         document.getElementById('receiver-email').innerText = packageInfo.receiverEmail;
         document.getElementById('receiver-phone').innerText = packageInfo.receiverPhone;
         document.getElementById('receiver-location').innerText = packageInfo.receiverLocation;
-        document.getElementById('package-weight').innerText = packageInfo.packageWeight;
-        document.getElementById('package-name').innerText = packageInfo.packageName;
-        document.getElementById('package-status').innerText = packageInfo.packageStatus;
-        document.getElementById('shipping-mode').innerText = packageInfo.shippingMode;
+        document.getElementById('content-weight').innerText = packageInfo.contentWeight;
+        document.getElementById('content-name').innerText = packageInfo.contentName;
+        document.getElementById('delivery-status').innerText = packageInfo.deliveryStatus;
+        document.getElementById('delivery-mode').innerText = packageInfo.deliveryMode;
     } else {
         // Handle case where no package information is found
         document.getElementById('package-info').innerText = 'No package information found.';

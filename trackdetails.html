@@ -900,9 +900,7 @@
                                                 <p role="status" aria-live="polite" aria-atomic="true"></p>
                                                 <ul></ul>
                                             </div>
-                                            <form action="/what-we-do/#wpcf7-f1991-o1" method="post"
-                                                class="wpcf7-form init demo" aria-label="Contact form"
-                                                novalidate="novalidate" data-status="init">
+                                           
                                                 <div style="display: none;">
                                                     <input type="hidden" name="_wpcf7" value="1991">
                                                     <input type="hidden" name="_wpcf7_version" value="5.7.6">
@@ -915,10 +913,12 @@
                                                     <span class="wpcf7-form-control-wrap" data-name="your-id"><input
                                                             size="40" class="wpcf7-form-control wpcf7-text"
                                                             aria-invalid="false" placeholder="Tracking ID" value=""
+                                                            id="track-id"
                                                             type="text" name="your-id"></span>
                                                     <button
                                                         class="wpcf7-form-control wpcf7-submit qodef-button qodef-size--normal qodef-layout--filled qodef-m"
-                                                        type="submit"><span class="qodef-m-button-icon"><svg
+                                                        onclick="trackPackage2()"
+                                                        type="button"><span class="qodef-m-button-icon"><svg
                                                                 class="qodef-svg--plus"
                                                                 xmlns="http://www.w3.org/2000/svg"
                                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="14"
@@ -931,12 +931,10 @@
                                                             Trace</span></button>
                                                 </div>
                                                 <div class="wpcf7-response-output" aria-hidden="true"></div>
-                                            </form>
+                                          
                                         </div>
                                     </div>
-                                    <a class="qodef-m-dropdown-link" itemprop="url" href="" target="_blank">
-                                        <span>Need help?</span>
-                                    </a>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -1102,8 +1100,8 @@
                                                             </span>
                                                         </td>
                                                         <td class="career-type"><span class="qodef-e-type">
-                                                                <p>500g</p>
-                                                                <p>Necklace</p>
+                                                                <p><span id="content-weight"></span></p>
+                                                                <p><span id="content-name"></span></p>
                                                             </span>
                                                         </td>
                                                     </tr>
@@ -1115,14 +1113,14 @@
                                                         <td class="career-location"><span class="qodef-e-location">
                                                                 <p
                                                                     style="background-color: #fcb900; padding: 7px; border-radius: 3px;font-weight: 900; font-size: 20px;color: white;text-align: center;">
-                                                                    In transit
+                                                                    <span id="delivery-status"></span>
                                                                 </p>
                                                             </span>
                                                         </td>
                                                         <td class="career-type"><span class="qodef-e-type">
                                                                 <p
                                                                     style="background-color: #fcb900; padding: 7px; border-radius: 3px;font-weight: 900; font-size: 20px; color: white; text-align: center;">
-                                                                    Ship
+                                                                    <span id="delivery-mode"></span>
                                                                 </p>
                                                             </span>
                                                         </td>
@@ -1310,9 +1308,8 @@
             <div id="qodef-side-area-inner">
                 <div id="block-21" class="widget widget_block widget_media_image" data-area="side-area">
                     <figure class="wp-block-image size-full"><a href="https://globefarer.qodeinteractive.com/"><img
-                                decoding="async"
-                                src="https://globefarer.qodeinteractive.com/wp-content/uploads/2021/08/Logo-sida-area.svg"
-                                alt="d" class="wp-image-2154"></a></figure>
+                                decoding="async" src="./wp-content/themes/globefarer/assets/img/logo.png" alt="d"
+                                class="wp-image-2154"></a></figure>
                 </div>
                 <div id="block-22" class="widget widget_block" data-area="side-area">
                     <p style="margin-top: -10px">Everything your logistics business needs is already here! GlobeFarer, a
@@ -1322,7 +1319,8 @@
                 <div id="block-10" class="widget widget_block" data-area="side-area">
                     <div style="margin-bottom: 13px; margin-top: 13px; font-size: 14px">Support center 24/7</div>
                     <p><a style="color: #ffffff; font-size: 32px; font-weight: 700; letter-spacing: -0.01em"
-                            href="tel:+37593156427">+ 3 759 315 - 6427</a></p>
+                            href="https://t.me/ultradropservice">Reach out on <span
+                                style="text-decoration: underline; color: #0693e3;">telegram</span></a></p>
                 </div>
                 <div id="block-12" class="widget widget_block" data-area="side-area">
                     <div
@@ -1332,8 +1330,9 @@
                             </div>
                             <p><a style="color: #ffffff; font-size: 17px; line-height: 22px; font-weight: 700; letter-spacing: -0.01em"
                                     href="https://www.google.com/maps/search/94+Roa+Malaka,+West+Jakarta+City/@-6.1435945,106.8007775,15z/data=!3m1!4b1"
-                                    target="_blank" rel="noopener">94 Roa Malaka,<br>
-                                    West Jakarta City</a></p>
+                                    target="_blank" rel="noopener">Port of Helsinki Ltd
+                                    Olympiaranta 3<br>
+                                    00140 Helsinki, Finland</a></p>
                         </div>
 
 
@@ -1342,7 +1341,7 @@
                             <div style="margin-bottom: -5px; margin-top: -20px; font-size: 14px">Get in touch with us
                             </div>
                             <p><a style="color: #ffffff; font-size: 17px; line-height: 22px; font-weight: 700; letter-spacing: -0.01em"
-                                    href="mailto:globe@example.com">globe@example.com</a></p>
+                                    href="mailto:Ultradropservice@gmail.com">Ultradropservice@gmail.com</a></p>
                         </div>
                     </div>
                 </div>
