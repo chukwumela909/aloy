@@ -235,6 +235,9 @@ function populatePackageInfo() {
         document.getElementById('content-name').innerText = packageInfo.contentName;
         document.getElementById('delivery-status').innerText = packageInfo.deliveryStatus;
         document.getElementById('delivery-mode').innerText = packageInfo.deliveryMode;
+        
+        // Load package timeline
+        loadPackageTimeline(packageInfo.trackingId);
     } else {
         // Handle case where no package information is found
         document.getElementById('package-info').innerText = 'No package information found.';
@@ -254,6 +257,87 @@ function validateEmail(email) {
 function validatePhone(phone) {
     const phoneRegex = /^[0-9]{10,15}$/; // Modify as needed for phone format
     return phoneRegex.test(phone);
+}
+
+// Function to load and display package timeline
+async function loadPackageTimeline(trackingId) {
+    const timelineContainer = document.getElementById('package-timeline-container');
+    
+    if (!timelineContainer) {
+        console.log('Timeline container not found - probably not on track details page');
+        return;
+    }
+    
+    try {
+        const response = await fetch(`https://aloyserver.onrender.com/package/timeline/${trackingId}`);
+        
+        if (!response.ok) {
+            throw new Error('Failed to fetch timeline');
+        }
+        
+        const data = await response.json();
+        
+        // Check if timeline exists and has entries
+        if (!data.timeline || data.timeline.length === 0) {
+            timelineContainer.innerHTML = `
+                <div class="timeline-empty">
+                    <div style="font-size: 3rem; margin-bottom: 1rem; color: #ccc;">🕒</div>
+                    <h3>No Timeline Available</h3>
+                    <p>Timeline information will appear here as your package moves through our delivery network.</p>
+                </div>
+            `;
+            return;
+        }
+        
+        // Generate timeline HTML
+        const timelineHTML = data.timeline.map(entry => {
+            const date = new Date(entry.timestamp);
+            const statusClass = getTimelineStatusClass(entry.status);
+            
+            return `
+                <div class="timeline-item ${statusClass}">
+                    <div class="timeline-status">${entry.status.replace(/-/g, ' ')}</div>
+                    ${entry.description ? `<div class="timeline-description">${entry.description}</div>` : ''}
+                    <div class="timeline-meta">
+                        <span>📅 ${date.toLocaleDateString()}</span>
+                        <span>🕒 ${date.toLocaleTimeString()}</span>
+                        ${entry.location ? `<span>📍 ${entry.location}</span>` : ''}
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+        timelineContainer.innerHTML = `
+            <div class="timeline-container">
+                ${timelineHTML}
+            </div>
+        `;
+        
+    } catch (error) {
+        console.error('Error loading timeline:', error);
+        timelineContainer.innerHTML = `
+            <div class="timeline-empty">
+                <div style="font-size: 3rem; margin-bottom: 1rem; color: #ccc;">⚠️</div>
+                <h3>Timeline Unavailable</h3>
+                <p>Unable to load timeline information at this time. Please try refreshing the page.</p>
+            </div>
+        `;
+    }
+}
+
+// Helper function to get status class for timeline styling
+function getTimelineStatusClass(status) {
+    switch (status.toLowerCase()) {
+        case 'delivered':
+            return 'completed';
+        case 'cancelled':
+            return 'cancelled';
+        case 'exception':
+        case 'on-hold':
+            return 'exception';
+        default:
+            return '';
+    }
 }
 
 
